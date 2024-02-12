@@ -39,11 +39,11 @@
     </div>
 
     <div class="form-group">
-        <label for="penerbit_id">Kategori</label>
-        <select name="penerbit_id" class="form-control" id="penerbit_id">
+        <label for="kategori_id">Kategori</label>
+        <select name="kategori_id" class="form-control" id="kategori_id">
             <option value="">--Select Category--</option>
-            @foreach ($penerbit as $penerbit)
-                <option value="{{ $penerbit->penerbit_id }}" {{ $buku->penerbit_id == $buku->penerbit_id ? 'selected' : '' }}>{{ $penerbit->alamat }}</option>
+            @foreach ($kategori as $penerbit)
+                <option value="{{ $penerbit->kategori_id }}" {{ $buku->kategori_id == $buku->kategori_id ? 'selected' : '' }}>{{ $penerbit->alamat }}</option>
             @endforeach
         </select>
     </div>

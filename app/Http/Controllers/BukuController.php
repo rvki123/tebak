@@ -52,7 +52,6 @@ class BukuController extends Controller
             'penulis' => 'required',
             'kategori_id' => 'required',
             'penerbit_id' => 'required',
-            'alamat' => 'required',
             'photo' => 'required|image'
 
             
@@ -69,7 +68,6 @@ class BukuController extends Controller
             'penulis' => $request->penulis,
             'kategori_id' => $request->kategori_id,
             'penerbit_id' => $request->penerbit_id,
-            'alamat' => $request->alamat,
             'photo' => $imgName
 
         ]);
@@ -88,7 +86,8 @@ class BukuController extends Controller
      */
     public function show($id)
     {
-        //
+        $buku = Buku::findOrFail($id);
+        return view('buku.show', compact('buku'));
     }
 
     /**
@@ -120,7 +119,6 @@ class BukuController extends Controller
             'penulis' => 'required',
             'kategori_id' => 'required',
             'penerbit_id' => 'required',
-            'alamat' => 'required',
             'photo' => 'required',
             
         ]);

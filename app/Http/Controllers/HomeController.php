@@ -25,16 +25,16 @@ class HomeController extends Controller
     public function index()
     {
 
-        $buku = Buku::paginate(20);
-        return view('home',compact('buku'));
-
-
+        // $buku = Buku::paginate(20);
+        // return view('home',compact('buku'));
         {
             if (Auth::check()) {
                 if (Auth::user()->role == 'admin') {
+
                     return view('dashboard');
                 } elseif (Auth::user()->role == 'siswa') {
-                    return view('home');
+                    $buku = Buku::all();
+                    return view('template.dashboard',compact('buku'));
                 } else {
                     abort(404, 'Tampilan dengan Role ' . Auth::user()->role . ' tidak ada');
                 }

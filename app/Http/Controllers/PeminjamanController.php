@@ -15,7 +15,7 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjanman::all();
+        $peminjaman = Peminjaman::all();
         return view('peminjaman.index', compact('peminjaman')) ;
     }
 
@@ -26,10 +26,9 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        $peminjaman = Peminjaman::all();
-        return view('peminjaman.create',compact('peminjaman'));
+        $buku = Buku::all(); // Ambil semua buku
+        return view('peminjaman.create', compact('buku'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -39,21 +38,23 @@ class PeminjamanController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'tgl_peminjaman' => 'required',
-            'tgl_pengembalian' => 'required',
-            'buku_id' => 'required',
+            'tanggal_peminjaman' => 'required',
+            'tanggal_pengembalian' => 'required',
+            'isbn' => 'required',
             'nisn' => 'required',
             'denda' => 'required',
+            'status' => 'required',
         ]);
-
+        
         Peminjaman::create([
-            'tgl_peminjaman' => $request->tgl_peminjaman,
-            'tgl_pengembalian' => $request->tgl_pengembalian,
-            'buku_id' => $request->buku_id,
+            'tanggal_peminjaman' => $request->tanggal_peminjaman,
+            'tanggal_pengembalian' => $request->tanggal_pengembalian,
+            'isbn' => $request->isbn,
             'nisn' => $request->nisn,
             'denda' => $request->denda, 
+            'status' => $request->status, 
         ]);
-
+        
         return redirect()->route('peminjaman.index')->with('success', 'Product category create successfully.' );
     }
 
@@ -92,7 +93,7 @@ class PeminjamanController extends Controller
         $this->validate($request,[
             'tgl_peminjaman' => 'required',
             'tgl_pengembalian' => 'required',
-            'buku_id' => 'required',
+            'isbn' => 'required',
             'nisn' => 'required',
             'denda' => 'required',
         ]);
@@ -111,7 +112,7 @@ class PeminjamanController extends Controller
      */
     public function destroy($id)
     {
-        $peminjaman = Peminjamnan::findOrFail($id);
+        $peminjaman = Peminjaman::findOrFail($id);
         $peminjaman->delete();
 
         return redirect()->route('peminjaman.index')->with('success', ('Product kategorikategori deleted successfully.'));

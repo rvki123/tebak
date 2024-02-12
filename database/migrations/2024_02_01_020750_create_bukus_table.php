@@ -20,7 +20,6 @@ class CreateBukusTable extends Migration
             $table->integer('stock');
             $table->string('penulis');
             $table->integer('kategori_id');
-            $table->string('alamat');
             $table->string('photo');
             $table->timestamps();
         });

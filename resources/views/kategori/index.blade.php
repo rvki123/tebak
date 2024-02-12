@@ -1,14 +1,13 @@
 @extends('partial.template')
 @section('content')
+<div class="container mt-5 text-center">
 <h1>Kategori Buku</h1>
+</div>
 @if(session('success'))
 <div class="alert alert-success" >{{session('success')}}</div>
 @endif
 
-<div class="mb-3">
-<a href="{{route('kategori.create') }}" class="btn btn-primary">Tambah Kategori</a>
-</div>
-
+<div class="container mt-5">
 <form action="{{ route('kategori.index')}}" method="GET" class="mb-3">
     <div class="input-group">
         <input type="text" name="search" class="form-control" placeholder="search-kategori" value="{{request('search')}}">
@@ -18,11 +17,11 @@
         </div>
     </div> 
 </form>
-
-<table class="table">
+<div class="container mt-5">
+        <table class="table table-bordered text-center">
     <thead>
         <tr>
-            
+        
             <th>Nama Kategori</th>
             <th>Actions</th>
         </tr>
@@ -46,4 +45,9 @@
         @endforeach
     </tbody>
 </table>
+</div>
+
+<div class="container mt-5">
+<a href="{{route('kategori.create') }}" class="btn btn-primary">Tambah Kategori</a>
+</div>
 @endsection
