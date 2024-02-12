@@ -16,7 +16,7 @@
     </div> 
 </form>
 
-<table class="table table-bordered text-center">
+    <table class="table table-bordered text-center">
     <thead>
         <tr>
             <th>NO</th>
@@ -24,7 +24,6 @@
             <th>stock</th>
             <th>penulis</th>
             <th>penerbit</th>
-            <th>alamat</th>
             <th>kategori</th>
             <th>photo</th>
             <th>Actions</th>
@@ -39,7 +38,6 @@
             <td>{{$u->stock}}</td>
             <td>{{$u->penulis}}</td>
             <td>{{$u->penerbit['nama_penerbit']}}</td>
-            <td>{{$u->penerbit->alamat}}</td>
             <td>{{$u->kategori_buku->kategori}}</td>
             <td><img src="{{asset('image/'.$u->photo)}}" alt="" width="50" height="50"></td>
             <td>
