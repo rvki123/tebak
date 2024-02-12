@@ -19,7 +19,6 @@ class CreatePeminjamenTable extends Migration
             $table->integer('nisn');
             $table->date('tanggal_peminjaman');
             $table->date('tanggal_pengembalian');
-            $table->string('hari');
             $table->integer('denda');
             $table->string('status');
             $table->timestamps();
