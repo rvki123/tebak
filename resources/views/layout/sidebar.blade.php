@@ -15,11 +15,8 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class=" ">
-            <a href="./dashboard.html">
-              <i class="nc-icon nc-bank"></i>
-              <p>Dashboard</p>
-            </a>
+          <li class="">
+            
           </li>
           <li>
             <a href="/buku">
@@ -41,7 +38,7 @@
           </li>
 
           <li>
-            <a href="./peminjaman">
+            <a href="/peminjamanAdmin">
               <i class="nc-icon nc-tile-56"></i>
               <p>peminjaman</p>
             </a>

@@ -19,7 +19,6 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand mt-5" href="{{ url('/') }}">
-                        <img src="{{ url('images/untung.png') }}"  width="150" alt="">
                     </a>
                 </div>
 

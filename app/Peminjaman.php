@@ -10,8 +10,15 @@ class Peminjaman extends Model
     protected $fillable = ['tanggal_peminjaman','tanggal_pengembalian','isbn','nisn'.'denda','status'];
     protected $primaryKey = 'peminjaman_id';
 
+
+    public function user()
+    {
+        return $this->hasMany('App\User', 'nisn', 'nisn');
+    }
+
     public function buku()
     {
-        return $this->hasMany('App\Buku','peminjaman_id','isbn');
+        return $this->belongsTo('App\Buku','isbn');
     }
+
 }

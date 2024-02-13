@@ -1,4 +1,4 @@
-@extends('home')
+@extends('partial.template')
 
 @section('content')
     <h1>Daftar Peminjaman</h1>
@@ -25,8 +25,10 @@
                     <th>Tanggal Peminjaman</th>
                     <th>Tanggal Pengembalian</th>
                     <th>Buku</th>
-                    <th>Isbn</th>
+                    <th>Nisn</th>
+                    <th>Status</th>
                     <th>Denda</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,8 +38,18 @@
                         <td>{{ $item->tanggal_peminjaman }}</td>
                         <td>{{ $item->tanggal_pengembalian }}</td>
                         <td>{{ $item->buku->judul }}</td>
-                        <td>{{ $item->isbn }}</td>
+                        <td>{{ $item->nisn }}</td>
+                        <td>{{ $item->status }}</td>
                         <td>{{ $item->denda }}</td>
+                        <td>
+                <a href="{{ route('peminjaman.edit', $item->peminjaman_id) }}" class="btn btn-sm btn-info">Edit</a>
+                <form action="{{ route('peminjaman.destroy', $item->peminjaman_id) }}" method="POST" class="d-inline">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
                     </tr>
                 @endforeach
             </tbody>

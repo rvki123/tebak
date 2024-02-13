@@ -30,8 +30,8 @@ class HomeController extends Controller
         {
             if (Auth::check()) {
                 if (Auth::user()->role == 'admin') {
-
-                    return view('dashboard');
+                    return view('partial.template');
+                    
                 } elseif (Auth::user()->role == 'siswa') {
                     $buku = Buku::all();
                     return view('template.dashboard',compact('buku'));

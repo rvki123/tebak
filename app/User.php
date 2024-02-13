@@ -33,4 +33,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function peminjaman()
+    {
+        return $this->belongsTo('App\Peminjaman','peminjaman_id','nisn');
+    }
 }

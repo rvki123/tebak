@@ -1,6 +1,7 @@
 @extends('home')
 @section('content')
 <div class="row">
+  
   <div class="col-lg-6 col-md-4 order-1">
     <div class="row">
       <div class="col-lg-6 col-md-12 col-6 mb-4">
@@ -119,7 +120,7 @@
         <p class="card-text">
           Some quick example text to build on the card title and make up the bulk of the card's content.
         </p>
-        <a href="{{route('buku.show',$u->isbn)}}" class="btn btn-outline-primary">Go somewhere</a>
+        <a href="{{route('buku.show',$u->isbn)}}" class="btn btn-outline-primary">Detail</a>
       </div>
     </div>
   </div>

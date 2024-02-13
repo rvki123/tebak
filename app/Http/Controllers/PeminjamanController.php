@@ -18,6 +18,11 @@ class PeminjamanController extends Controller
         $peminjaman = Peminjaman::all();
         return view('peminjaman.index', compact('peminjaman')) ;
     }
+    public function admin()
+    {
+        $peminjaman = Peminjaman::all();
+        return view('peminjaman.admin', compact('peminjaman')) ;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -42,7 +47,6 @@ class PeminjamanController extends Controller
             'tanggal_pengembalian' => 'required',
             'isbn' => 'required',
             'nisn' => 'required',
-            'denda' => 'required',
             'status' => 'required',
         ]);
         
@@ -51,8 +55,7 @@ class PeminjamanController extends Controller
             'tanggal_pengembalian' => $request->tanggal_pengembalian,
             'isbn' => $request->isbn,
             'nisn' => $request->nisn,
-            'denda' => $request->denda, 
-            'status' => $request->status, 
+            'status' => $request->status,
         ]);
         
         return redirect()->route('peminjaman.index')->with('success', 'Product category create successfully.' );
@@ -77,8 +80,9 @@ class PeminjamanController extends Controller
      */
     public function edit($id)
     {
-        $peminjaman = Peminjaman::all();
-        return view('peminjaman.edit',compact('peminjaman'));
+        $buku = buku::all();
+        $peminjaman = Peminjaman::findOrFail($id);
+        return view('peminjaman.edit',compact('peminjaman','buku'));
     }
 
     /**
@@ -91,15 +95,18 @@ class PeminjamanController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'tgl_peminjaman' => 'required',
-            'tgl_pengembalian' => 'required',
-            'isbn' => 'required',
-            'nisn' => 'required',
+            'status' => 'required',
             'denda' => 'required',
         ]);
 
         $peminjaman = Peminjaman::findOrFail($id);
-        $peminjaman->update($request->all());
+
+        // Memperbarui setiap kolom secara terpisah
+        $peminjaman->status = $request->status;
+        $peminjaman->denda = $request->denda;
+    
+        // Menyimpan perubahan
+        $peminjaman->save();
 
         return redirect()->route('peminjaman.index')->with('success', 'Product category create successfully.' );
     }

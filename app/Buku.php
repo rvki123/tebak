@@ -22,7 +22,7 @@ class Buku extends Model
 
     public function peminjaman()
     {
-        return $this->belongsTo('App\Peminjaman','peminjaman_id');
+        return $this->hasMany('App\Peminjaman','peminjaman_id','isbn');
     }
 
 }
