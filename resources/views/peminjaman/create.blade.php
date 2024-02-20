@@ -15,11 +15,8 @@
 
     <form action="{{ route('peminjaman.store') }}" method="POST">
     {{csrf_field()}}
+        <input type="hidden" name='nisn' value="{{ Auth::user()->nisn }}">
         
-        <div class="form-group">
-            <label for="tanggal_peminjaman">Tanggal Peminjaman:</label>
-            <input type="date" class="form-control" id="tanggal_peminjaman" name="tanggal_peminjaman" required>
-        </div>
 
         <div class="form-group">
             <label for="tanggal_pengembalian">Tanggal Pengembalian:</label>
@@ -35,10 +32,8 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="nisn">Nisn:</label>
-            <input type="number" class="form-control" id="nisn" name="nisn"  required>
-        </div>
+       
+
 
         <div class="form-group">
             <label for="status">Status:</label>

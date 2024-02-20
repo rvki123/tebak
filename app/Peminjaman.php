@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Peminjaman extends Model
 {
     protected $table = 'peminjamen';
-    protected $fillable = ['tanggal_peminjaman','tanggal_pengembalian','isbn','nisn'.'denda','status'];
+    protected $fillable = ['tanggal_peminjaman','tanggal_pengembalian','isbn','nisn','denda','status'];
     protected $primaryKey = 'peminjaman_id';
 
 
     public function user()
     {
-        return $this->hasMany('App\User', 'nisn', 'nisn');
+        return $this->belongsTo('App\User', 'nisn', 'nisn');
     }
 
     public function buku()

@@ -1,11 +1,10 @@
 @extends('partial.template')
 @section('content')
-<h1>Penerbit</h1>
 @if(session('success'))
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
-
+<center><h1>Penerbit</h1></center>
 <div class="container mt-5">
 <form action="{{ route('penerbit.index') }}" method="GET" class="mb-3">
     <div class="input-group">
@@ -16,7 +15,7 @@
     </div>
 </form>
 
-<table class="table table-bordered text-center">
+<table class="table text-center">
 
     <thead>
         <tr>
@@ -32,8 +31,7 @@
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $item->nama_penerbit }}</td>
-            <td>{{ $item->alamat }}</td>
-
+            <td>{{$item->alamat}}</td>
             <td>
                 <a href="{{ route('penerbit.edit', $item->penerbit_id) }}" class="btn btn-sm btn-info">Edit</a>
                 <form action="{{ route('penerbit.destroy', $item->penerbit_id) }}" method="POST" class="d-inline">

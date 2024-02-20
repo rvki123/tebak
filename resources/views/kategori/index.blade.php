@@ -18,7 +18,7 @@
     </div> 
 </form>
 <div class="container mt-5">
-        <table class="table table-bordered text-center">
+        <table class="table text-center">
     <thead>
         <tr>
         

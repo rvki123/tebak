@@ -25,8 +25,6 @@ class HomeController extends Controller
     public function index()
     {
 
-        // $buku = Buku::paginate(20);
-        // return view('home',compact('buku'));
         {
             if (Auth::check()) {
                 if (Auth::user()->role == 'admin') {
@@ -35,6 +33,7 @@ class HomeController extends Controller
                 } elseif (Auth::user()->role == 'siswa') {
                     $buku = Buku::all();
                     return view('template.dashboard',compact('buku'));
+
                 } else {
                     abort(404, 'Tampilan dengan Role ' . Auth::user()->role . ' tidak ada');
                 }

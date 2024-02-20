@@ -1,12 +1,13 @@
 @extends('partial.template')
 
 @section('content')
-    <h1>Daftar Peminjaman</h1>
+    
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
+    <center><h1>Daftar Peminjaman</h1></center>
     <div class="container mt-5">
 <form action="{{ route('peminjaman.index') }}" method="GET" class="mb-3">
     <div class="input-group">
@@ -18,13 +19,14 @@
 </form>
 
     <div class="container mt-5">
-        <table class="table table-bordered text-center">
+        <table class="table  text-center">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Tanggal Peminjaman</th>
                     <th>Tanggal Pengembalian</th>
-                    <th>Buku</th>
+                    <th>judul</th>
+                    <th>isbn</th>
                     <th>Nisn</th>
                     <th>Status</th>
                     <th>Denda</th>
@@ -37,8 +39,9 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->tanggal_peminjaman }}</td>
                         <td>{{ $item->tanggal_pengembalian }}</td>
-                        <td>{{ $item->buku->judul }}</td>
-                        <td>{{ $item->nisn }}</td>
+                        <td>{{ $item->buku->judul}}</td>
+                        <td>{{ $item->isbn }}</td>
+                        <td>{{ $item->user->nama_siswa }}</td>
                         <td>{{ $item->status }}</td>
                         <td>{{ $item->denda }}</td>
                         <td>

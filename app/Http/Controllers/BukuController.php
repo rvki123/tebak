@@ -17,14 +17,16 @@ class BukuController extends Controller
     {
         $search = $request->input('search');
         $buku = Buku::query();
-
-    if ($search) {
-    $buku->where('judul', 'LIKE', '%' . $search . '%');
+    
+        if ($search) {
+            $buku->where('judul', 'LIKE', '%' . $search . '%');
+        }
+    
+        $buku = $buku->paginate(2);
+        
+        return view('buku.index', compact('buku', 'search'));
     }
-
-    $buku = $buku->paginate(10);
-        return view('buku.index', compact('buku')) ;
-    }
+    
 
     /**
      * Show the form for creating a new resource.

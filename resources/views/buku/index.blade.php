@@ -4,19 +4,19 @@
 <div class="alert alert-success" >{{session('success')}}</div>
 @endif
 
-
-<div class="container mt-5">
+<center><h1>Daftar Buku</h1></center>
+<div class="container mt-6">
 <form action="{{ route('buku.index')}}" method="GET" class="mt-5">
-    <div class="input-group">
+    <div class="input-group mb-5">
         <input type="text" name="search" class="form-control" placeholder="search-buku" value="{{request('search')}}">
 
-        <div class="input-group-append">
+        <div class="input-group-append  ">
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
     </div> 
 </form>
 
-    <table class="table table-bordered text-center">
+    <table class="table text-center">
     <thead>
         <tr>
             <th>NO</th>
@@ -31,9 +31,9 @@
     </thead>
 
     <tbody>
-        @foreach($buku as $buku => $u)
+        @foreach($buku as $p => $u)
         <tr>
-            <td>{{$buku+1}}</td>
+            <td>{{$p+1}}</td>
             <td>{{$u->judul}}</td>
             <td>{{$u->stock}}</td>
             <td>{{$u->penulis}}</td>
@@ -52,8 +52,48 @@
         @endforeach
     </tbody>
 </table>
-        <div class="mb-5">
+       <div class="mb-5">
         <a href="{{route('buku.create') }}" class="btn btn-primary mt-5">Tambah Buku</a>
         </div>
+        
+        <div class="pagination">
+    @if ($buku->onFirstPage())
+        <button class="btn btn-secondary" disabled>Previous</button>
+    @else
+        <a href="{{ $buku->previousPageUrl() }}" class="btn btn-secondary">Previous</a>
+    @endif
+
+    @php
+        $halfTotalLinks = floor(config('pagination.default') / 2);
+        $from = $buku->currentPage() - $halfTotalLinks;
+        $to = $buku->currentPage() + $halfTotalLinks;
+        if ($buku->currentPage() < $halfTotalLinks) {
+            $to += $halfTotalLinks - $buku->currentPage();
+        }
+        if ($buku->lastPage() - $buku->currentPage() < $halfTotalLinks) {
+            $from -= $halfTotalLinks - ($buku->lastPage() - $buku->currentPage()) - 1;
+        }
+    @endphp
+
+    @for ($i = $from; $i <= $to; $i++)
+        @if ($i > 0 && $i <= $buku->lastPage())
+            @if ($i == $buku->currentPage())
+                <span class="btn btn-primary">{{ $i }}</span>
+            @else
+                <a href="{{ $buku->url($i) }}" class="btn btn-secondary">{{ $i }}</a>
+            @endif
+        @endif
+    @endfor
+
+    @if ($buku->hasMorePages())
+        <a href="{{ $buku->nextPageUrl() }}" class="btn btn-secondary">Next</a>
+    @else
+        <button class="btn btn-secondary" disabled>Next</button>
+    @endif
+</div>
+
+</div>
+
+        
 </div>
 @endsection

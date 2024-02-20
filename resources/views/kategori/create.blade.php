@@ -1,5 +1,6 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<h1>Buat Kategori </h1>
+@extends('partial.template')
+@section('content')
+<center><h1>Buat Kategori </h1></center>
 <form method="POST" action="{{route('kategori.store')}}">
 
     {{csrf_field()}}
@@ -10,3 +11,4 @@
     <button type="submit" class="btn btn-primary">Buat</button>
     <a href="{{ route('kategori.index') }}" class="btn btn-secondary">Kembali</a>
 </form>
+@endsection

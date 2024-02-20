@@ -43,16 +43,17 @@
 
           <div class="row">
             <dt class="col-3">Judul  :</dt>
-            <dd class="col-9">Starwars</dd>
+            <dd class="col-9">{{$buku->judul}}</dd>
 
             <dt class="col-3">Penerbit    :</dt>
-            <dd class="col-9">Telerie</dd>
+            <dd class="col-9">{{$buku->penerbit->nama_penerbit}}</dd>
 
             <dt class="col-3">Penulis :</dt>
-            <dd class="col-9">Jackson irvine</dd>
+            <dd class="col-9">{{$buku->penulis}}</dd>
 
-            <dt class="col-3">Alamat    :</dt>
-            <dd class="col-9">Australia</dd>
+            <dt class="col-3">Alamat :</dt>
+            <dd class="col-9">{{$buku->penerbit->alamat}}</dd>
+
           </div>
           <hr/>
 

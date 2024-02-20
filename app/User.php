@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-       'nisn', 'nama_siswa','kelas', 'email', 'password',
+       'nisn', 'nama_siswa','kelas', 'email', 'password','role'
     ];
 
     /**
@@ -36,6 +36,6 @@ class User extends Authenticatable
 
     public function peminjaman()
     {
-        return $this->belongsTo('App\Peminjaman','peminjaman_id','nisn');
+        return $this->hasMany('App\Peminjaman','peminjaman_id','nisn');
     }
 }

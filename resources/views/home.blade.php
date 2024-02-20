@@ -17,7 +17,7 @@
   <!-- End Google Tag Manager (noscript) -->
   
   <!-- Layout wrapper -->
-<div class="layout-wrapper layout-content-navbar  ">
+<div class="layout-wrapper layout-content-navbar">
   <div class="layout-container">
 
     
@@ -32,8 +32,8 @@
 
   
   <div class="app-brand demo ">
-    <a href="/home" class="app-brand-link">
-      <span class="app-brand-logo demo">
+    
+      
 
 <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -56,7 +56,8 @@
 </svg>
 
 </span>
-      <span class="app-brand-text demo menu-text fw-bold ms-2">perpustakaan</span>
+      
+      <span class="app-brand-text demo menu-text fw-bold ms-2">Siswa</span>
     </a>
 
     <a href="/home" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -70,12 +71,18 @@
     <li class="menu-item">
       <a href="javascript:void(0)" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-box"></i>
-        <div data-i18n="User interface">Peminjaman</div>
+        <div data-i18n="User interface">Master Data</div>
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="ui-accordion.html" class="menu-link">
-            <div data-i18n="Accordion">Peminjaman</div>
+          <a href="/home" class="menu-link">
+            <div data-i18n="Accordion">Home</div>
+          </a>
+        </li>
+
+        <li class="menu-item">
+          <a href="/peminjaman" class="menu-link">
+            <div data-i18n="Accordion"> Story Peminjaman </div>
           </a>
         </li>
 </aside>
@@ -96,17 +103,7 @@
 
 
 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
-  
 
-  
-
-  
-
-      
-      
-
-      
-      
       <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
           <i class="bx bx-menu bx-sm"></i>
@@ -116,12 +113,6 @@
 
       <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
-        
-
-        
-
-
-        
         <!-- Search -->
         <div class="navbar-nav align-items-center">
           <div class="nav-item d-flex align-items-center">
@@ -138,16 +129,16 @@
           
           <!-- Place this tag where you want the button to render. -->
           <li class="nav-item lh-1 me-3">
-            <a class="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label=" "></a>
           </li>
           
 
 
           <!-- User -->
-          <li class="nav-item navbar-dropdown dropdown-user dropdown">
+          <li class="">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
               <div class="avatar avatar-online">
-                <img src="{{asset('template/assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle">
+                <img src="{{asset('images/user1.jpeg')}}" alt class="w-px-40 h-auto rounded-circle">
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -156,45 +147,24 @@
                   <div class="d-flex">
                     <div class="flex-shrink-0 me-3">
                       <div class="avatar avatar-online">
-                        <img src="{{asset('template/assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle">
+                        <img src="{{asset('images/user1.jpeg')}}" alt class="w-px-40 h-auto rounded-circle">
                       </div>
                     </div>
                     <div class="flex-grow-1">
-                      <span class="fw-medium d-block">John Doe</span>
-                      <small class="text-muted">Admin</small>
+                      <span class="fw-medium d-block">{{ Auth::user()->nama_siswa }}</span>
+
+                      <small class="text-muted">Siswa</small>
                     </div>
                   </div>
                 </a>
               </li>
               <li>
-                <div class="dropdown-divider"></div>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  <i class="bx bx-user me-2"></i>
-                  <span class="align-middle">My Profile</span>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  <i class="bx bx-cog me-2"></i>
-                  <span class="align-middle">Settings</span>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  <span class="d-flex align-items-center align-middle">
-                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                    <span class="flex-grow-1 align-middle ms-1">Billing</span>
-                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>
-              <li>
-                <a class="dropdown-item" href="javascript:void(0);">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+           onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          {{ csrf_field() }}
+          </form>
                   <i class="bx bx-power-off me-2"></i>
                   <span class="align-middle">Log Out</span>
                 </a>
@@ -214,9 +184,6 @@
 
   
 <!-- / Navbar -->
-
-      
-
       <!-- Content wrapper -->
       
       <div class="content-wrapper">  
@@ -238,12 +205,12 @@
        </div>
     <div class="d-none d-lg-inline-block">
       
-      <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-      <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+      <a href="" class="footer-link me-4" target="_blank"></a>
+      <a href="" target="_blank" class="footer-link me-4"></a>
       
-      <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
+      <a href="" target="_blank" class="footer-link me-4"></a>
       
-      <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link">Support</a>
+      <a href="" target="_blank" class="footer-link"></a>
       
       
     </div>
@@ -271,9 +238,6 @@
   
 
   
-  <div class="buy-now">
-    <a href="https://themeselection.com/item/sneat-bootstrap-html-admin-template/" target="_blank" class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
-  </div>
   
 
   <!-- Core JS -->

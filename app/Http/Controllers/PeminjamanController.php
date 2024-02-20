@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Peminjaman;
 use App\Buku;
-
-
+use App\User;
+use Auth;
+use Carbon\Carbon;
 class PeminjamanController extends Controller
 {
     /**
@@ -42,24 +43,27 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->validate($request,[
-            'tanggal_peminjaman' => 'required',
             'tanggal_pengembalian' => 'required',
             'isbn' => 'required',
             'nisn' => 'required',
             'status' => 'required',
         ]);
         
+        
+        // Membuat data peminjaman dengan menggunakan nisn dari pengguna yang login
         Peminjaman::create([
-            'tanggal_peminjaman' => $request->tanggal_peminjaman,
+            'tanggal_peminjaman' => Carbon::now(),
             'tanggal_pengembalian' => $request->tanggal_pengembalian,
             'isbn' => $request->isbn,
             'nisn' => $request->nisn,
             'status' => $request->status,
         ]);
         
-        return redirect()->route('peminjaman.index')->with('success', 'Product category create successfully.' );
+        return redirect()->route('peminjaman.index')->with('success', 'Peminjaman berhasil ditambahkan.' );
     }
+    
 
     /**
      * Display the specified resource.
@@ -108,7 +112,7 @@ class PeminjamanController extends Controller
         // Menyimpan perubahan
         $peminjaman->save();
 
-        return redirect()->route('peminjaman.index')->with('success', 'Product category create successfully.' );
+        return redirect()->route('peminjaman.admin')->with('success', 'Product category create successfully.' );
     }
 
     /**
@@ -122,6 +126,7 @@ class PeminjamanController extends Controller
         $peminjaman = Peminjaman::findOrFail($id);
         $peminjaman->delete();
 
-        return redirect()->route('peminjaman.index')->with('success', ('Product kategorikategori deleted successfully.'));
+       
+        return redirect()->route('peminjaman.admin')->with('success', ('Product kategorikategori deleted successfully.'));
     }
 }

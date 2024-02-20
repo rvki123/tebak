@@ -1,6 +1,8 @@
 @extends('partial.template')
 
 @section('content')
+
+<center><h1>Edit Peminjaman</h1></center>
 <form action="{{ route('peminjaman.update', $peminjaman->peminjaman_id) }}" method="POST">
     {{csrf_field()}}
         
@@ -15,4 +17,4 @@
         </div>
         <button type="submit" class="btn btn-primary">Tambah</button>
     </form>
-@endsection
+    @endsection
