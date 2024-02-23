@@ -32,13 +32,13 @@
 
 <style>
 
-/* #layout-menu {
+#layout-menu {
   transition: transform 0.3s ease-in-out; /* Efek transisi untuk perubahan transformasi */
 }
-/* 
+
 #layout-menu:hover {
   transform: translateX(-200px); /* Menggeser menu ke kiri sejauh lebar elemen */
-} */ */
+}
 
 
   </style>
