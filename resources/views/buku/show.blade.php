@@ -54,14 +54,23 @@
             <dt class="col-3">Alamat :</dt>
             <dd class="col-9">{{$buku->penerbit->alamat}}</dd>
 
+            <dt class="col-3">Stock :</dt>
+            <dd class="col-9">{{$buku->stock}}</dd>
+
           </div>
           <hr/>
-
+  
           <div class="row mb-4">
             <div class="col-md-4 col-6 mb-3">
               </div>
             </div>
           </div>
+          <form action="{{ route('peminjaman.store',$buku->isbn) }}" method="POST">
+              {{csrf_field()}}
+                  <input type="hidden" name='nisn' value="{{ Auth::user()->nisn }}">
+                  <input type="hidden" name='isbn' value="{{$buku->isbn}}">
+                  <button type="submit" class="btn btn-primary">Tambah</button>
+              </form>
           <a href="{{ route('peminjaman.create', $buku ->isbn)}}" class="btn btn-warning shadow-0">Peminjaman</a>
         </div>
       </main>

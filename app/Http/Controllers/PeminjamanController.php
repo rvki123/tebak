@@ -19,12 +19,15 @@ class PeminjamanController extends Controller
         $peminjaman = Peminjaman::all();
         return view('peminjaman.index', compact('peminjaman')) ;
     }
+
+
     public function admin()
     {
         $peminjaman = Peminjaman::all();
         return view('peminjaman.admin', compact('peminjaman')) ;
-    }
 
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -32,7 +35,7 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        $buku = Buku::all(); // Ambil semua buku
+        $buku = Buku::all(); 
         return view('peminjaman.create', compact('buku'));
     }
     /**
@@ -41,29 +44,42 @@ class PeminjamanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        
-        $this->validate($request,[
-            'tanggal_pengembalian' => 'required',
-            'isbn' => 'required',
-            'nisn' => 'required',
-            'status' => 'required',
-        ]);
-        
-        
-        // Membuat data peminjaman dengan menggunakan nisn dari pengguna yang login
-        Peminjaman::create([
-            'tanggal_peminjaman' => Carbon::now(),
-            'tanggal_pengembalian' => $request->tanggal_pengembalian,
-            'isbn' => $request->isbn,
-            'nisn' => $request->nisn,
-            'status' => $request->status,
-        ]);
-        
-        return redirect()->route('peminjaman.index')->with('success', 'Peminjaman berhasil ditambahkan.' );
+
+     public function store(Request $request, $id)
+{
+    // Temukan buku berdasarkan ID
+    
+    $buku = Buku::find($id);
+
+    // Periksa apakah buku ada
+    if (!$buku) {
+        return redirect()->back()->with('error', 'Buku tidak ditemukan.');
+    }
+
+    // Periksa apakah stok buku cukup
+    if ($buku->stock <= 0) {
+        return redirect()->back()->with('error', 'Stok buku habis.');
     }
     
+    // Mengatur tanggal pengembalian 7 hari ke depan dari hari ini
+    $tanggal_pengembalian = Carbon::now()->addDays(7);
+
+    // Membuat data peminjaman dengan menggunakan nisn dari pengguna yang login
+    Peminjaman::create([
+        'tanggal_peminjaman' => Carbon::now(),
+        'tanggal_pengembalian' => $tanggal_pengembalian,
+        'isbn' => $request->isbn, // Menggunakan ISBN dari buku yang ditemukan
+        'nisn' => $request->nisn,
+        'status' => "pinjam",
+    ]);
+    $buku->stock--;
+    $buku->save();
+
+    return redirect()->route('peminjaman.index')->with('success', 'Peminjaman berhasil ditambahkan.' );
+}
+
+
+         
 
     /**
      * Display the specified resource.
@@ -85,8 +101,8 @@ class PeminjamanController extends Controller
     public function edit($id)
     {
         $buku = buku::all();
-        $peminjaman = Peminjaman::findOrFail($id);
-        return view('peminjaman.edit',compact('peminjaman','buku'));
+        $peminjamans = Peminjaman::findOrFail($id);
+        return view('peminjaman.edit',compact('peminjamans','buku'));
     }
 
     /**
@@ -100,7 +116,7 @@ class PeminjamanController extends Controller
     {
         $this->validate($request,[
             'status' => 'required',
-            'denda' => 'required',
+           
         ]);
 
         $peminjaman = Peminjaman::findOrFail($id);
@@ -111,6 +127,13 @@ class PeminjamanController extends Controller
     
         // Menyimpan perubahan
         $peminjaman->save();
+
+        $buku = Buku::find($peminjaman->isbn);
+        $buku->increment('Stock');
+        if ($buku->Stock >= 0) {
+            // Jika stok habis, ubah status buku menjadi tidak tersedia
+            $buku->update(['Status' => 'Tersedia']);
+        }
 
         return redirect()->route('peminjaman.admin')->with('success', 'Product category create successfully.' );
     }

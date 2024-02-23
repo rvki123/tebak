@@ -30,6 +30,18 @@
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
+<style>
+
+/* #layout-menu {
+  transition: transform 0.3s ease-in-out; /* Efek transisi untuk perubahan transformasi */
+}
+/* 
+#layout-menu:hover {
+  transform: translateX(-200px); /* Menggeser menu ke kiri sejauh lebar elemen */
+} */ */
+
+
+  </style>
   
   <div class="app-brand demo ">
     
@@ -71,7 +83,7 @@
     <li class="menu-item">
       <a href="javascript:void(0)" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-box"></i>
-        <div data-i18n="User interface">Master Data</div>
+        <div data-i18n="User interface">All</div>
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
@@ -83,6 +95,11 @@
         <li class="menu-item">
           <a href="/peminjaman" class="menu-link">
             <div data-i18n="Accordion"> Story Peminjaman </div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="/aturan" class="menu-link">
+            <div data-i18n="Accordion"> Aturan Peminjaman </div>
           </a>
         </li>
 </aside>
@@ -115,22 +132,16 @@
 
         <!-- Search -->
         <div class="navbar-nav align-items-center">
-          <div class="nav-item d-flex align-items-center">
-            <i class="bx bx-search fs-4 lh-0"></i>
-            <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2" placeholder="Search..." aria-label="Search...">
+          <div class="nav-item flex-row align-items-center"> 
           </div>
         </div>
-        <!-- /Search -->
         
-
         <ul class="navbar-nav flex-row align-items-center ms-auto">
           
 
           
           <!-- Place this tag where you want the button to render. -->
-          <li class="nav-item lh-1 me-3">
-            <a class="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label=" "></a>
-          </li>
+         
           
 
 
@@ -264,6 +275,34 @@
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   
+  <!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+
+	<title>Responsive Footer</title>
+
+	<link rel="stylesheet" href="style.css">
+	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+	<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+
+</head>
+	<body>
+		
+
+		<!-- The content of your page would go here. -->
+
+	
+
+  </style>
+
+
 </body>
 
 </html>

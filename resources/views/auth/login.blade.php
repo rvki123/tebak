@@ -7,6 +7,27 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
 
+                <style>
+         
+         /* form {
+            background: linear-gradient(to bottom, red, yellow, green);
+             height: 100%;
+            margin: 0;
+            padding: 0;
+        } */
+/* 
+        div, form   {
+            background-: url('images/perpus.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100%;
+            margin: 0;
+        }
+         */
+
+    </style>
+               
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}

@@ -1,11 +1,11 @@
 @extends('partial.template')
 @section('content')
-<div class="container mt-5 text-center">
-<h1>Kategori Buku</h1>
-</div>
 @if(session('success'))
 <div class="alert alert-success" >{{session('success')}}</div>
 @endif
+
+
+<center><h1>Kategori Buku</h1></center>
 
 <div class="container mt-5">
 <form action="{{ route('kategori.index')}}" method="GET" class="mb-3">

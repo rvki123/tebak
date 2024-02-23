@@ -1,95 +1,39 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Card</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        /* CSS untuk tampilan card */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Menggunakan tinggi viewport untuk membuat kartu terpusat di tengah layar */
+        }
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+        .card {
+            width: 700px; /* Atur lebar kartu sesuai kebutuhan Anda */
+            padding: 20px; /* Atur padding untuk memisahkan teks dari tepi kartu */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <h4>
+            <p>1. Mengembalikan Buku Terlambat: Anggota tidak diperkenankan mengembalikan buku terlambat tanpa membayar denda sesuai dengan kebijakan perpustakaan.</p>
+            <p>2. Kerusakan Buku: Anggota dilarang merusak buku. Jika buku mengalami kerusakan saat dalam peminjaman, anggota akan dikenakan biaya penggantian atau perbaikan sesuai dengan kebijakan perpustakaan.</p>
+            <p>3. Peminjaman untuk Orang Lain: Anggota dilarang meminjamkan kartu pustakaannya kepada orang lain untuk digunakan dalam peminjaman.</p>
+            <p>4. Peminjaman dalam Jumlah Besar: Anggota dilarang melakukan peminjaman dalam jumlah besar yang melebihi batas yang ditentukan oleh perpustakaan.</p>
+            </h4>
         </div>
-    </body>
+    </div>
+</body>
 </html>

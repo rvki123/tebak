@@ -23,11 +23,10 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>Nama Siswa</th>
+                    <th>Judul</th>
                     <th>Tanggal Peminjaman</th>
                     <th>Tanggal Pengembalian</th>
-                    <th>judul</th>
-                    <th>isbn</th>
-                    <th>Nisn</th>
                     <th>Status</th>
                     <th>Denda</th>
                     <th>Actions</th>
@@ -37,11 +36,10 @@
                 @foreach($peminjaman as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->user->nama_siswa }}</td>
+                        <td>{{ $item->buku->judul}}</td>
                         <td>{{ $item->tanggal_peminjaman }}</td>
                         <td>{{ $item->tanggal_pengembalian }}</td>
-                        <td>{{ $item->buku->judul}}</td>
-                        <td>{{ $item->isbn }}</td>
-                        <td>{{ $item->user->nama_siswa }}</td>
                         <td>{{ $item->status }}</td>
                         <td>{{ $item->denda }}</td>
                         <td>

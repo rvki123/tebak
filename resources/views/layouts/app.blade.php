@@ -12,6 +12,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+         
+
+         
+       html, body    {
+            background-image: url('images/perpus.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100%;
+            margin: 0;
+        
+        }
+
+    </style>
 </head>
 <body>
     <div id="app">

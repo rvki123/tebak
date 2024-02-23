@@ -32,7 +32,7 @@
 
                                 @if ($errors->has('nisn'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('isn') }}</strong>
+                                        <strong>{{ $errors->first('nisn') }}</strong>
                                     </span>
                                 @endif
                             </div>

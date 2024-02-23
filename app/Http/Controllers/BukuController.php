@@ -90,6 +90,18 @@ class BukuController extends Controller
     {
         $buku = Buku::findOrFail($id);
         return view('buku.show', compact('buku'));
+
+        // Ambil jumlah stok buku sebelumnya
+$stok_sebelumnya = $buku->stock;
+
+// Lakukan proses pengembalian buku
+
+// Misalnya, tambahkan kembali 1 ke stok buku
+$buku->stock = $stok_sebelumnya + 1;
+
+// Simpan perubahan
+$buku->save();
+
     }
 
     /**
@@ -121,12 +133,24 @@ class BukuController extends Controller
             'penulis' => 'required',
             'kategori_id' => 'required',
             'penerbit_id' => 'required',
-            'photo' => 'required',
+        
             
         ]);
 
         $buku = Buku::findOrFail($id);
-        $buku->update($request->all());
+        if ($request->hasFile('photo')) {
+            $imgName = $request->photo->getClientOriginalName() . '-' . time() . '.' . $request->photo->extension();
+        $request->photo->move(public_path('image'), $imgName);
+        }
+        $buku->update([
+            'judul' => $request->judul,
+            'stock' => $request->stock,
+            'penulis' => $request->penulis,
+            'kategori_id' => $request->kategori_id,
+            'penerbit_id' => $request->penerbit_id,
+        
+
+        ]);
 
         return redirect()->route('buku.index')->with('success', 'Edit Buku Selesai.');
 

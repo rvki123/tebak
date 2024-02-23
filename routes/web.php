@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/aturan', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
@@ -45,7 +48,7 @@ Route::delete('buku/{id}', 'BukuController@destroy')->name('buku.destroy');
 Route::get('/peminjaman', 'PeminjamanController@index')->name('peminjaman.index');
 Route::get('/peminjamanAdmin', 'PeminjamanController@admin')->name('peminjaman.admin');
 Route::get('/peminjaman/create', 'PeminjamanController@create')->name('peminjaman.create');
-Route::post('/peminjaman/store', 'PeminjamanController@store')->name('peminjaman.store');
+Route::post('/peminjaman/store/{peminjaman_id}', 'PeminjamanController@store')->name('peminjaman.store');
 Route::get('/peminjaman/{peminjaman_id}/edit', 'PeminjamanController@edit')->name('peminjaman.edit');
 Route::post('/peminjaman/{peminjaman_id}', 'PeminjamanController@update')->name('peminjaman.update');
 Route::delete('/peminjaman/{peminjaman_id}/delete', 'PeminjamanController@destroy')->name('peminjaman.destroy');

@@ -6,7 +6,7 @@
 
 <center><h1>Penerbit</h1></center>
 <div class="container mt-5">
-<form action="{{ route('penerbit.index') }}" method="GET" class="mb-3">
+<form action="{{ route('penerbit.index') }}" method="GET" class="mb-5">
     <div class="input-group">
         <input type="text" name="search" class="form-control" placeholder="Search Penerbit" value="{{ request('search') }}">
         <div class="input-group-append">

@@ -17,12 +17,6 @@
     {{csrf_field()}}
         <input type="hidden" name='nisn' value="{{ Auth::user()->nisn }}">
         
-
-        <div class="form-group">
-            <label for="tanggal_pengembalian">Tanggal Pengembalian:</label>
-            <input type="date" class="form-control" id="tanggal_pengembalian" name="tanggal_pengembalian" required>
-        </div>
-
         <div class="form-group">
             <label for="isbn">ISBN:</label>
             <select class="form-control" id="isbn" name="isbn" required>
@@ -31,9 +25,6 @@
                 @endforeach
             </select>
         </div>
-
-       
-
 
         <div class="form-group">
             <label for="status">Status:</label>

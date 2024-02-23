@@ -90,6 +90,9 @@
           </div>
         </div>
       </div>
+
+
+      
       <!-- </div>
     <div class="row"> -->
       
@@ -99,18 +102,23 @@
 
 <div class="row mb-5">
 @foreach($buku as $u)
-  <div class="col-md-4 col-lg-3 mb-3">
+<div class="col-md-4 col-lg-3 mb-3">
     <div class="card h-100">
-      <img class="card-img-top" src="{{asset('image/'.$u->photo)}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{$u->judul}}</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the card's content.
-        </p>
-        <a href="{{route('buku.show',$u->isbn)}}" class="btn btn-outline-primary">Detail</a>
-      </div>
+        <img class="card-img-top" src="{{ asset('image/'.$u->photo) }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ $u->judul }}</h5>
+            <p class="card-text">
+                Some quick example text to build on the card title and make up the bulk of the card's content.
+            </p>
+            @if($u->stock == 0)
+                <button class="btn btn-danger">Stock Habis</button>
+            @else
+                <a href="{{ route('buku.show', $u->isbn) }}" class="btn btn-outline-primary">Detail</a>
+            @endif
+        </div>
     </div>
-  </div>
+</div>
+
   @endforeach
 </div>
 @endsection

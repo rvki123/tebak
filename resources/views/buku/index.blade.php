@@ -21,10 +21,10 @@
         <tr>
             <th>NO</th>
             <th>judul</th>
-            <th>stock</th>
             <th>penulis</th>
             <th>penerbit</th>
             <th>kategori</th>
+            <th>stock</th>
             <th>photo</th>
             <th>Actions</th>
         </tr>
@@ -35,10 +35,10 @@
         <tr>
             <td>{{$p+1}}</td>
             <td>{{$u->judul}}</td>
-            <td>{{$u->stock}}</td>
             <td>{{$u->penulis}}</td>
             <td>{{$u->penerbit['nama_penerbit']}}</td>
             <td>{{$u->kategori_buku->kategori}}</td>
+            <td>{{$u->stock}}</td>
             <td><img src="{{asset('image/'.$u->photo)}}" alt="" width="50" height="50"></td>
             <td>
                 <a href="{{ route('buku.edit', $u->isbn)}}" class="btn btn-sm btn-info">Edit</a>
