@@ -7,6 +7,10 @@ use App\Buku;
 use App\User;
 use Auth;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use PDF;
+
 class PeminjamanController extends Controller
 {
     /**
@@ -16,19 +20,72 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::all();
+        $peminjaman = Peminjaman::all(); 
         return view('peminjaman.index', compact('peminjaman')) ;
+
     }
 
+    public function peminjamanLaporanpdf(Request $request)
+    {
+        $tanggal_mulai = session('tanggal_mulai');
+        $tanggal_selesai = session('tanggal_selesai');
 
+        $peminjaman = Peminjaman::query();
+
+        // Tambahkan filter tanggal jika tanggal_mulai dan tanggal_selesai diisi
+        if ($tanggal_mulai && $tanggal_selesai) {
+            $peminjaman->whereDate('tanggal_peminjaman', '>=', $tanggal_mulai)
+                ->whereDate('tanggal_peminjaman', '<=', $tanggal_selesai);
+        }
+
+        $peminjaman = $peminjaman->get();
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        // Set paper size and orientation (landscape)
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Load HTML content
+        $html = view('peminjaman.cetak_laporan', compact('peminjaman'))->render();
+        $dompdf->loadHtml($html);
+
+        // Render the PDF
+        $dompdf->render();
+
+        // Output the generated PDF (inline or attachment)
+        return $dompdf->stream('cetak-laporan');
+
+    }
+  
     public function admin()
     {
         $peminjaman = Peminjaman::all();
         return view('peminjaman.admin', compact('peminjaman')) ;
 
     }
+
+    public function tanggal(Request $request)
+    {
     
-    /**
+        $tanggal_mulai = $request->tanggal_mulai;
+        $tanggal_selesai = $request->tanggal_selesai;
+    
+        // Simpan dalam sesi
+        session(['tanggal_mulai' => $tanggal_mulai, 'tanggal_selesai' => $tanggal_selesai]);
+    
+        // Ambil data peminjaman berdasarkan tanggal
+        $peminjaman = Peminjaman::where('tanggal_peminjaman', '>=', $tanggal_mulai)
+            ->where('tanggal_peminjaman', '<=', $tanggal_selesai)
+            ->get();
+    
+        return view('peminjaman.admin', compact('peminjaman'));
+    }
+    
+        
+
+        /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -62,7 +119,7 @@ class PeminjamanController extends Controller
     }
     
     // Mengatur tanggal pengembalian 7 hari ke depan dari hari ini
-    $tanggal_pengembalian = Carbon::now()->addDays(7);
+    $tanggal_pengembalian = Carbon::now()->addDays(-1);
 
     // Membuat data peminjaman dengan menggunakan nisn dari pengguna yang login
     Peminjaman::create([
@@ -75,7 +132,7 @@ class PeminjamanController extends Controller
     $buku->stock--;
     $buku->save();
 
-    return redirect()->route('peminjaman.index')->with('success', 'Peminjaman berhasil ditambahkan.' );
+    return redirect()->route('peminjaman.index')->with('success', 'Buku berhasil dipinjam.' );
 }
 
 
@@ -112,31 +169,58 @@ class PeminjamanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $this->validate($request,[
-            'status' => 'required',
-           
-        ]);
 
-        $peminjaman = Peminjaman::findOrFail($id);
+     public function update(Request $request, $id)
+{
+    $peminjaman = Peminjaman::findOrFail($id);
 
-        // Memperbarui setiap kolom secara terpisah
-        $peminjaman->status = $request->status;
-        $peminjaman->denda = $request->denda;
-    
-        // Menyimpan perubahan
-        $peminjaman->save();
+    // Memperbarui status peminjaman
+    $peminjaman->status = "kembalikan";
 
-        $buku = Buku::find($peminjaman->isbn);
-        $buku->increment('Stock');
-        if ($buku->Stock >= 0) {
-            // Jika stok habis, ubah status buku menjadi tidak tersedia
-            $buku->update(['Status' => 'Tersedia']);
-        }
+    // Menghitung denda jika tanggal pengembalian lewat
+    $tanggal_pengembalian = Carbon::parse($peminjaman->tanggal_pengembalian);
+    $tanggalAktual = Carbon::now(); // Menggunakan waktu dan tanggal aktual
 
-        return redirect()->route('peminjaman.admin')->with('success', 'Product category create successfully.' );
+    // Jika tanggal aktual melewati tanggal pengembalian, baru hitung denda
+    if ($tanggalAktual->gt($tanggal_pengembalian)) {
+        $selisihHari = $tanggalAktual->diffInDays($tanggal_pengembalian, false); // Menentukan selisih hari dengan tanggal pengembalian
+        $dendaPerHari = 1000; // Denda per hari
+        $dendaTotal = $selisihHari * $dendaPerHari;
+        $peminjaman->denda = $dendaTotal;
+    } else {
+        $peminjaman->denda = null; // Set denda menjadi null jika belum lewat tanggal pengembalian
     }
+
+    // Menyimpan tanggal aktual ke dalam database
+    $peminjaman->tanggal_aktual = $tanggalAktual; // Assign the current date to tanggal_aktual field
+
+    // Menyimpan perubahan
+    $peminjaman->save();
+
+    // Menandai bahwa buku sudah dikembalikan
+    $buku = Buku::find($peminjaman->isbn);
+    if ($peminjaman->is_returned) {
+        $buku->increment('stock');
+        // Tandai bahwa buku sudah dikembalikan
+        $peminjaman->is_returned = true;
+        $peminjaman->save();
+    }
+
+    if ($buku->stock > 0) {
+        // Jika stok masih tersedia, ubah status buku menjadi Tersedia
+        $buku->update(['status' => 'Tersedia']);
+    }
+    return redirect()->back();
+}
+
+     
+
+     
+
+
+
+
+    
 
     /**
      * Remove the specified resource from storage.
@@ -148,8 +232,6 @@ class PeminjamanController extends Controller
     {
         $peminjaman = Peminjaman::findOrFail($id);
         $peminjaman->delete();
-
-       
         return redirect()->route('peminjaman.admin')->with('success', ('Product kategorikategori deleted successfully.'));
     }
 }

@@ -67,11 +67,10 @@
           </div>
           <form action="{{ route('peminjaman.store',$buku->isbn) }}" method="POST">
               {{csrf_field()}}
-                  <input type="hidden" name='nisn' value="{{ Auth::user()->nisn }}">
+                  <input type="hidden" name='nisn' value="{{ Auth::user()->nisn}}">
                   <input type="hidden" name='isbn' value="{{$buku->isbn}}">
-                  <button type="submit" class="btn btn-primary">Tambah</button>
+                  <button type="submit" class="btn btn-primary">Pinjam</button>
               </form>
-          <a href="{{ route('peminjaman.create', $buku ->isbn)}}" class="btn btn-warning shadow-0">Peminjaman</a>
         </div>
       </main>
     </div>

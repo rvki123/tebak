@@ -1,9 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 @extends('partial.template')
 @section('content')
 @if(session('success'))
 <div class="alert alert-success" >{{session('success')}}</div>
 @endif
-
 <center><h1>Daftar Buku</h1></center>
 <div class="container mt-6">
 <form action="{{ route('buku.index')}}" method="GET" class="mt-5">
@@ -16,7 +23,7 @@
     </div> 
 </form>
 
-    <table class="table text-center">
+    <table class="table text-center table-bordered" >
     <thead>
         <tr>
             <th>NO</th>
@@ -24,7 +31,7 @@
             <th>penulis</th>
             <th>penerbit</th>
             <th>kategori</th>
-            <th>stock</th>
+            <th>stok</th>
             <th>photo</th>
             <th>Actions</th>
         </tr>
@@ -41,6 +48,8 @@
             <td>{{$u->stock}}</td>
             <td><img src="{{asset('image/'.$u->photo)}}" alt="" width="50" height="50"></td>
             <td>
+
+            
                 <a href="{{ route('buku.edit', $u->isbn)}}" class="btn btn-sm btn-info">Edit</a>
                 <form action="{{ route('buku.destroy', $u->isbn)}}" method="POST" class="d-inline">
                     {{csrf_field()}}
@@ -97,3 +106,6 @@
         
 </div>
 @endsection
+
+</body>
+</html>

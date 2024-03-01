@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-group">
-        <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock" value="{{ old('stock') }}" required>
+        <input type="number" class="form-control" id="stock" name="stock" placeholder="Stok" value="{{ old('stock') }}" required>
     </div>
     
     <div class="form-group">

@@ -1,12 +1,22 @@
+@extends('home')
+@section('content')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Card</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>Aturan Peminjaman</title>
+   
     <style>
         /* CSS untuk tampilan card */
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: black; /* Warna latar belakang */
+            background-image: url('images/perpus.jpg');
+        }
+
         .card-container {
             display: flex;
             justify-content: center;
@@ -15,12 +25,30 @@
         }
 
         .card {
-            width: 700px; /* Atur lebar kartu sesuai kebutuhan Anda */
-            padding: 20px; /* Atur padding untuk memisahkan teks dari tepi kartu */
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+            width: 70%; /* Atur lebar kartu sesuai kebutuhan Anda */
+            max-width: 600px; /* Lebar maksimum kartu */
+            padding: 35px; /* Atur padding untuk memisahkan teks dari tepi kartu */
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
+            background-color: #ffffff; /* Warna latar belakang kartu */
+            color: #333; /* Warna teks */
+        }
+
+        .card h4 {
+            margin-top: 10; /* Menghapus margin atas dari judul */
+            font-size: 30px; /* Ukuran font untuk judul */
+            text-align: center; /* Pusatkan teks */
+            color: #333; /* Warna teks judul */
+        }
+
+        .card p {
+            font-size: 19px; /* Ukuran font untuk konten */
+            line-height: 1.6; /* Jarak antara baris */
+            margin-bottom: 25px; /* Jarak antara paragraf */
+        }
+
+        .card p:last-child {
+            margin-bottom: 0; /* Hapus margin bawah dari paragraf terakhir */
         }
     </style>
 </head>
@@ -37,3 +65,4 @@
     </div>
 </body>
 </html>
+@endsection

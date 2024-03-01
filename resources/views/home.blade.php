@@ -19,7 +19,49 @@
   <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
   <div class="layout-container">
+  <style>
+        /* CSS untuk tampilan sidebar */
+        #layout-menu {
+            transition: transform 0.3s ease-in-out; /* Efek transisi untuk perubahan transformasi */
+            width: 237px; /* Lebar sidebar */
+            height: 100%; /* Tinggi sidebar */
+            background-color: #333; /* Warna latar belakang sidebar */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Z-index untuk memastikan sidebar tampil di atas konten lain */
+            overflow-y: auto; /* Mengaktifkan scrolling pada sidebar jika konten terlalu panjang */
+        }
 
+        #layout-menu.hidden {
+            transform: translateX(-200px); /* Menggeser sidebar ke kiri sejauh lebar elemen */
+        }
+
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            left: 50px;
+            z-index: 1001; /* Z-index untuk memastikan tombol tampil di atas sidebar */
+            background-color: silver; /* Warna latar belakang tombol */
+            padding: 10px 15px; /* Padding tombol */
+            border: none; /* Hilangkan border */
+            border-radius: 5px; /* Border radius */
+            cursor: pointer; /* Ubah kursor saat dihover menjadi pointer */
+            font-style: Arial ; /* Specify the font family */
+    
+        }
+
+        /* Targeting all paragraphs with the class 'custom-font' */
+   
+
+        html, body{
+          background-color: #DCDCDC;
+
+
+        }
+    </style>
+
+<button class="menu-button" onclick="toggleSidebar()">Close Menu</button>
     
     
 
@@ -28,20 +70,10 @@
 
 <!-- Menu -->
 
+
+
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
-<style>
-
-#layout-menu {
-  transition: transform 0.3s ease-in-out; /* Efek transisi untuk perubahan transformasi */
-}
-
-#layout-menu:hover {
-  transform: translateX(-200px); /* Menggeser menu ke kiri sejauh lebar elemen */
-}
-
-
-  </style>
   
   <div class="app-brand demo ">
     
@@ -66,11 +98,13 @@
     </g>
   </g>
 </svg>
-
 </span>
-      
-      <span class="app-brand-text demo menu-text fw-bold ms-2">Siswa</span>
     </a>
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
 
     <a href="/home" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
       <i class="bx bx-chevron-left bx-sm align-middle"></i>
@@ -99,10 +133,18 @@
         </li>
         <li class="menu-item">
           <a href="/aturan" class="menu-link">
-            <div data-i18n="Accordion"> Aturan Peminjaman </div>
+            <div data-i18n="Accordion">Aturan Peminjaman</div>
           </a>
         </li>
 </aside>
+
+
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById('layout-menu');
+        sidebar.classList.toggle('hidden');
+    }
+</script>
 <!-- / Menu -->
 
     
@@ -206,13 +248,10 @@
     </div>
           <!-- / Content -->
 <!-- Footer -->
-<footer class="content-footer footer bg-footer-theme">
+
   <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
     <div class="mb-2 mb-md-0">
-      © <script>
-      document.write(new Date().getFullYear())
-
-      </script>
+     
        </div>
     <div class="d-none d-lg-inline-block">
       

@@ -16,10 +16,9 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('nisn');
             $table->string('nama_siswa');
-            $table->string('kelas');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum->role('admin','siswa')->default('siswa');
+            $table->enum('role', ['admin', 'siswa'])->default('siswa');
             $table->rememberToken();
             $table->timestamps();
         });

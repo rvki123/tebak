@@ -52,4 +52,6 @@ Route::post('/peminjaman/store/{peminjaman_id}', 'PeminjamanController@store')->
 Route::get('/peminjaman/{peminjaman_id}/edit', 'PeminjamanController@edit')->name('peminjaman.edit');
 Route::post('/peminjaman/{peminjaman_id}', 'PeminjamanController@update')->name('peminjaman.update');
 Route::delete('/peminjaman/{peminjaman_id}/delete', 'PeminjamanController@destroy')->name('peminjaman.destroy');
+Route::get('/tanggal', 'PeminjamanController@tanggal')->name('tanggal');
+Route::get('/cetak-laporan', 'PeminjamanController@peminjamanLaporanpdf')->name('cetak-laporan');
 

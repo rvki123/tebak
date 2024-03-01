@@ -22,7 +22,7 @@ class BukuController extends Controller
             $buku->where('judul', 'LIKE', '%' . $search . '%');
         }
     
-        $buku = $buku->paginate(2);
+        $buku = $buku->paginate(5);
         
         return view('buku.index', compact('buku', 'search'));
     }
@@ -75,6 +75,7 @@ class BukuController extends Controller
         ]);
 
         return redirect()->route('buku.index')->with('success', 'Menambahkan Buku Selesai.' );
+        
 
     
     }

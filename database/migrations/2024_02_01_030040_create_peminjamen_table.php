@@ -20,6 +20,7 @@ class CreatePeminjamenTable extends Migration
             $table->date('tanggal_peminjaman');
             $table->date('tanggal_pengembalian');
             $table->integer('denda');
+            $table->date('tanggal_aktual')->nullable();
             $table->string('status');
             $table->timestamps();
         });
