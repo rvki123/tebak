@@ -21,7 +21,7 @@
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Search Peminjaman" value="{{ request('search') }}">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Search</button>
+                    <button class="btn btn-info" type="submit">Search</button>
                 </div>
             </div>
         </form>
@@ -30,12 +30,13 @@
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Judul</th>
-                        <th>Kode Buku</th>
-                        <th>Tanggal Peminjaman</th>
-                        <th>Tanggal Pengembalian</th>
-                        <th>Denda</th>
+                        <th class="bg-light">No</th>
+                        <th class="bg-light">Judul</th>
+                        <th class="bg-light">Kode Buku</th>
+                        <th class="bg-light">Tanggal Peminjaman</th>
+                        <th class="bg-light">Tanggal Aktual</th>
+                        <th class="bg-light">Tanggal Pengembalian</th>
+                        <th class="bg-light">Denda</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,58 +46,35 @@
                             <td>{{ $item->buku['judul']}}</td>
                             <td>{{ $item->isbn }}</td>
                             <td>{{ $item->tanggal_peminjaman }}</td>
+                            <td>{{ $item->tanggal_aktual }}</td>
                             <td>{{ $item->tanggal_pengembalian }}</td>
                             <td>{{ $item->denda }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-<div class="d-flex justify-content-center mt-3">
-    @if ($peminjaman instanceof \Illuminate\Pagination\AbstractPaginator && $peminjaman->hasPages())
-        <ul class="pagination">
-            {{-- Previous Page Link --}}
-            @if ($peminjaman->onFirstPage())
-                <li class="page-item disabled">
-                    <span class="page-link">&laquo;</span>
-                </li>
-            @else
-                <li class="page-item">
-                    <a class="page-link" href="{{ $peminjaman->previousPageUrl() }}" rel="prev">&laquo;</a>
-                </li>
-            @endif
 
-            {{-- Pagination Elements --}}
-            @foreach ($peminjaman as $element)
-                {{-- "Three Dots" Separator --}}
-                @if (is_string($element))
-                    <li class="page-item disabled"><span class="page-link">{{ $element }}</span></li>
-                @endif
-
-                {{-- Array Of Links --}}
-                @if (is_array($element))
-                    @foreach ($element as $page => $url)
-                        @if ($page == $peminjaman->currentPage())
-                            <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
-                        @else
-                            <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
-                        @endif
-                    @endforeach
-                @endif
-            @endforeach
-
-            {{-- Next Page Link --}}
-            @if ($peminjaman->hasMorePages())
-                <li class="page-item">
-                    <a class="page-link" href="{{ $peminjaman->nextPageUrl() }}" rel="next">&raquo;</a>
-                </li>
-            @else
-                <li class="page-item disabled">
-                    <span class="page-link">&raquo;</span>
-                </li>
-            @endif
-        </ul>
-    @endif
-</div>
+                <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item {{ $peminjaman->onFirstPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $peminjaman->previousPageUrl() }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    </li>
+                    <!-- Tampilkan nomor halaman -->
+                    @for ($i = 1; $i <= $peminjaman->lastPage(); $i++)
+                        <li class="page-item {{ $peminjaman->currentPage() == $i ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $peminjaman->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+                    <li class="page-item {{ $peminjaman->hasMorePages() ? '' : 'disabled' }}">
+                    <a class="page-link" href="{{ $peminjaman->nextPageUrl() }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    </li>
+                </ul>
+                </nav>
+  
             </div>
         </div>
     </div>

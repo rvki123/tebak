@@ -13,8 +13,9 @@ class PenerbitController extends Controller
      */
     public function index()
     {
-        $penerbit = Penerbit::all();
-        return view('penerbit.index', compact('penerbit')) ;
+        $penerbit = Penerbit::paginate(5); // 10 adalah jumlah item yang ingin ditampilkan per halaman
+
+        return view('penerbit.index', compact('penerbit'));
     }
 
     /**

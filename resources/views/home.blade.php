@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-menu-fixed layout-compact " dir="ltr" data-theme="theme-default" data-assets-path="{{asset('template/assets')}}" data-template="vertical-menu-template-free">
+<html lang="en" class="light-style  layout-menu-fixed layout-compact " dir="ltr" data-theme="theme-default" data-assets-path="{{asset('template/assets')}}" data-template="vertical-menu-template-free">
 
   <head>
 
@@ -17,7 +17,7 @@
   <!-- End Google Tag Manager (noscript) -->
   
   <!-- Layout wrapper -->
-<div class="layout-wrapper layout-content-navbar">
+<div class="layout-wrapper layout-content-navbar bg-primary">
   <div class="layout-container">
   <style>
         /* CSS untuk tampilan sidebar */
@@ -54,11 +54,16 @@
         /* Targeting all paragraphs with the class 'custom-font' */
    
 
-        html, body{
-          background-color: #DCDCDC;
+        html, body {
+    background-image: url('images/perpuss.jpg');  
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center center;
+}
 
 
-        }
+
+        
     </style>
 
 <button class="menu-button" onclick="toggleSidebar()">Close Menu</button>
@@ -72,7 +77,7 @@
 
 
 
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-gray">
 
   
   <div class="app-brand demo ">
@@ -122,18 +127,15 @@
       <ul class="menu-sub">
         <li class="menu-item">
           <a href="/home" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Accordion">Home</div>
           </a>
         </li>
 
         <li class="menu-item">
           <a href="/peminjaman" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-detail"></i>
             <div data-i18n="Accordion"> Story Peminjaman </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/aturan" class="menu-link">
-            <div data-i18n="Accordion">Aturan Peminjaman</div>
           </a>
         </li>
 </aside>

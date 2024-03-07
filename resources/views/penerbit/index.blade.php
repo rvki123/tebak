@@ -49,4 +49,27 @@
     <a href="{{ route('penerbit.create') }}" class="btn btn-primary">Tambah</a>
 </div>
 </div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item {{ $penerbit->onFirstPage() ? 'disabled' : '' }}">
+      <a class="page-link" href="{{ $penerbit->previousPageUrl() }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <!-- Tampilkan nomor halaman -->
+    @for ($i = 1; $i <= $penerbit->lastPage(); $i++)
+        <li class="page-item {{ $penerbit->currentPage() == $i ? 'active' : '' }}">
+            <a class="page-link" href="{{ $penerbit->url($i) }}">{{ $i }}</a>
+        </li>
+    @endfor
+    <li class="page-item {{ $penerbit->hasMorePages() ? '' : 'disabled' }}">
+      <a class="page-link" href="{{ $penerbit->nextPageUrl() }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
 @endsection
+

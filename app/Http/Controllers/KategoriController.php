@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Kategori_buku;
 class KategoriController extends Controller
@@ -13,7 +12,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori_buku::all();
+        $kategori = Kategori_buku::paginate(5);
         return view('kategori.index', compact('kategori')) ;
 
 

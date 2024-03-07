@@ -10,26 +10,26 @@
     <center><h1>Daftar Peminjaman</h1></center>
 
     <form action="{{ route('tanggal') }}" method="GET">
-                <div class="row pb-3 justify-content-end">
-                    <div class="col-md-3">
-                        <label for="tanggal_mulai"> Tanggal Mulai: </label>
-                        <input type="date" id="tanggal_mulai" name="tanggal_mulai" class="form-control" required>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="tanggal_selesai"> Tanggal Selesai: </label>
-                        <input type="date" id="tanggal_selesai" name="tanggal_selesai" class="form-control" required>
-                    </div>
-                    <div class="col-md-1 pt-4">
-                        <button type="submit" class="btn btn-primary btn-sm">Cari</button>
-                    </div>
-                </div>
-            </form>
-            <div class="d-flex justify-content-end mb-3">
-            <a href="{{ route('cetak-laporan') }}"target="_blank" class="btn btn-danger m-2">Cetak Pdf</a>
-                    <a href="{{ route('peminjaman.admin') }}" class="btn btn-primary m-2">Kembali</a>
-                
+        <div class="row pb-3 justify-content-start"> <!-- Mengubah justify-content-end menjadi justify-content-start -->
+            <div class="col-md-3">
+                <label for="tanggal_mulai"> Tanggal Mulai: </label>
+                <input type="date" id="tanggal_mulai" name="tanggal_mulai" class="form-control" required>
             </div>
+            <div class="col-md-3">
+                <label for="tanggal_selesai"> Tanggal Selesai: </label>
+                <input type="date" id="tanggal_selesai" name="tanggal_selesai" class="form-control" required>
+            </div>
+            <div class="col-md-1 pt-4">
+                <button type="submit" class="btn btn-primary btn-sm">Cari</button>
+            </div>
+        </div>
+    </form>
 
+    <div class="d-flex justify-content-start mb-3"> <!-- Mengubah justify-content-end menjadi justify-content-start -->
+    <a href="{{ route('cetak-laporan') }}" target="_blank" class="btn btn-danger m-2">Cetak Pdf</a>
+    <a href="{{ route('peminjaman.admin') }}" class="btn btn-primary m-2">Kembali</a>    
+</div>
+            
     <div class="container mt-5">
 <form action="{{ route('peminjaman.admin') }}" method="GET" class="mb-3">
     <div class="input-group">
@@ -87,4 +87,5 @@
             </tbody>
         </table>
     </div>
+    
 @endsection

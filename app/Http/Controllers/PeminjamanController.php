@@ -20,8 +20,9 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::all(); 
+        $peminjaman = Peminjaman::paginate(5);
         return view('peminjaman.index', compact('peminjaman')) ;
+        
 
     }
 
@@ -119,7 +120,7 @@ class PeminjamanController extends Controller
     }
     
     // Mengatur tanggal pengembalian 7 hari ke depan dari hari ini
-    $tanggal_pengembalian = Carbon::now()->addDays(-1);
+    $tanggal_pengembalian = Carbon::now()->addDays(1);
 
     // Membuat data peminjaman dengan menggunakan nisn dari pengguna yang login
     Peminjaman::create([
@@ -212,15 +213,6 @@ class PeminjamanController extends Controller
     }
     return redirect()->back();
 }
-
-     
-
-     
-
-
-
-
-    
 
     /**
      * Remove the specified resource from storage.

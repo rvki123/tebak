@@ -1,4 +1,4 @@
-@extends('home')
+<!-- @extends('home')
 @section('content')
 
 <!DOCTYPE html>
@@ -65,4 +65,4 @@
     </div>
 </body>
 </html>
-@endsection
+@endsection -->
