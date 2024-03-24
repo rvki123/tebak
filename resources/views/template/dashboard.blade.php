@@ -65,7 +65,7 @@
     <div class="row">
       
       <div class="col-lg- col-md-6 col-6 mb-4">
-        <div class="card">
+        <div class="card bg-">
           <div class="card-body">
             <div class="card-title d-flex align-items-start justify-content-between">
               <div class="avatar flex-shrink-0">
@@ -108,7 +108,6 @@
         <div class="card-body " >
             <h5 class="card-title">{{ $u->judul }}</h5>
             <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's content.
             </p>
             @if($u->stock == 0)
                 <button class="btn btn-danger">Stock Habis</button>

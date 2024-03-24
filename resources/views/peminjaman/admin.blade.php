@@ -59,7 +59,7 @@
                 @foreach($peminjaman as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->user->nama_siswa }}</td>
+                        <td>{{ $item->user['nama_siswa'] }}</td>
                         <td>{{ $item->buku->judul}}</td>
                         <td>{{ $item->tanggal_peminjaman }}</td>
                         <td>{{ $item->tanggal_aktual }}</td>

@@ -22,28 +22,25 @@
   <div class="container">
     <div class="row gx-5">
       <aside class="col-lg-6">
-        <div class=" rounded-4 mb-3 d-flex justify-content-center">
-          <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
-            <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{asset('image/'.$buku->photo)}} "alt="" width="300" height="400" />
-          </a>
-        </div>
+      <div class="card-body">
+                        @if ($buku->stock > 0)
+                            <img src="{{ asset('image/' . $buku->photo) }}" alt="{{ $buku->judul }}" style="max-width: 100%; height: auto;">
+                        @else
+                            <img src="{{ asset('image/stock-habis.png') }}" alt="Stock Habis" style="max-width: 100%; height: auto;">
+                        @endif
         <!-- thumbs-wrap.// -->
         <!-- gallery-wrap .end// -->
       </aside>
       <main class="col-lg-6">
         <div class="ps-lg-3">
-          <h4 class="title text-dark">
-            Buku comic starwars
-          </h4>
+        <div>
+            <dd class="col-9"><h2>{{$buku->judul}}</h2></dd>
 
-            <p>
-                Modern look and quality demo item is a streetwear-inspired collection that continues to break away from the conventions of mainstream fashion. Made in Italy, these black and brown clothing low-top shirts for
-                men.
-            </p>
+            <dt class="col-3"><h5>Deskripsi    :</h5></dt>
+            <dd class="col-9">{{$buku->deskripsi}}</dd>
+      </div>
 
           <div class="row">
-            <dt class="col-3">Judul  :</dt>
-            <dd class="col-9">{{$buku->judul}}</dd>
 
             <dt class="col-3">Penerbit    :</dt>
             <dd class="col-9">{{$buku->penerbit->nama_penerbit}}</dd>

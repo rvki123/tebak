@@ -20,7 +20,7 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::paginate(5);
+        $peminjaman = Peminjaman::orderBy('created_at', 'desc')->paginate(5);
         return view('peminjaman.index', compact('peminjaman')) ;
         
 
@@ -62,7 +62,7 @@ class PeminjamanController extends Controller
   
     public function admin()
     {
-        $peminjaman = Peminjaman::all();
+        $peminjaman = Peminjaman::orderBy('created_at', 'desc')->paginate(5);
         return view('peminjaman.admin', compact('peminjaman')) ;
 
     }

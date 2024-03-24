@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Buku extends Model
 {
     protected $table = 'bukus';
-    protected $fillable = ['judul', 'stock', 'penulis', 'photo', 'penerbit_id', 'kategori_id'];
+    protected $fillable = ['judul', 'deskripsi','stock', 'penulis', 'photo', 'penerbit_id', 'kategori_id'];
     protected $primaryKey = 'isbn';
 
     public function penerbit()

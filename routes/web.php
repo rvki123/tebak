@@ -46,8 +46,6 @@ Route::post('buku/{buku_id}', 'BukuController@update')->name('buku.update');
 Route::delete('buku/{id}', 'BukuController@destroy')->name('buku.destroy');
 Route::get('/aturan', 'BukuController@aturan')->name('buku.aturan');
 
-
-
 Route::get('/peminjaman', 'PeminjamanController@index')->name('peminjaman.index');
 Route::get('/peminjamanAdmin', 'PeminjamanController@admin')->name('peminjaman.admin');
 Route::get('/peminjaman/create', 'PeminjamanController@create')->name('peminjaman.create');
@@ -57,4 +55,25 @@ Route::post('/peminjaman/{peminjaman_id}', 'PeminjamanController@update')->name(
 Route::delete('/peminjaman/{peminjaman_id}/delete', 'PeminjamanController@destroy')->name('peminjaman.destroy');
 Route::get('/tanggal', 'PeminjamanController@tanggal')->name('tanggal');
 Route::get('/cetak-laporan', 'PeminjamanController@peminjamanLaporanpdf')->name('cetak-laporan');
+
+
+// routes/web.php
+
+use App\Http\Controllers\ProfilController;
+
+Route::get('/profil', function () {
+    // Di sini Anda bisa melakukan logika untuk mengambil data profil dari database atau dari mana pun Anda mendapatkan datanya
+    $profileData = [
+        'nama' => 'John Doe',
+        'email' => 'johndoe@example.com',
+        // Informasi profil lainnya...
+    ];
+
+    // Anda perlu mengembalikan view atau data yang ingin ditampilkan di halaman profil
+    return view('profil', compact('profileData'));
+})->name('profil');
+
+Route::put('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
+
+
 

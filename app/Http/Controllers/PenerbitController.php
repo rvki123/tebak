@@ -13,11 +13,11 @@ class PenerbitController extends Controller
      */
     public function index()
     {
-        $penerbit = Penerbit::paginate(5); // 10 adalah jumlah item yang ingin ditampilkan per halaman
-
+        $penerbit = Penerbit::orderBy('created_at', 'desc')->paginate(5);
+    
         return view('penerbit.index', compact('penerbit'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *

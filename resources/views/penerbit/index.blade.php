@@ -10,7 +10,7 @@
     <div class="input-group">
         <input type="text" name="search" class="form-control" placeholder="Search Penerbit" value="{{ request('search') }}">
         <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">Search</button>
+            <button class="form-group-input  btn btn-primary ms-2" type="submit">Search</button>
         </div>
     </div>
 </form>

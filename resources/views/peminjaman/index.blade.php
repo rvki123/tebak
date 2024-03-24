@@ -10,10 +10,17 @@
 
 @section('content')
 
-   
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+
+    <style>
+        h1 {
+    font-size: 50px; /* Ubah ukuran font sesuai keinginan Anda */
+    font-family: Stencil; /* Ganti jenis font dengan jenis font yang Anda inginkan */
+}
+
+    </style>
     <center> <h1>Daftar Peminjaman</h1></center>
 
     <div class="container mt-5">
@@ -30,25 +37,25 @@
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>
-                        <th class="bg-light">No</th>
-                        <th class="bg-light">Judul</th>
-                        <th class="bg-light">Kode Buku</th>
-                        <th class="bg-light">Tanggal Peminjaman</th>
-                        <th class="bg-light">Tanggal Aktual</th>
-                        <th class="bg-light">Tanggal Pengembalian</th>
-                        <th class="bg-light">Denda</th>
+                        <th class="bg-info" style="color: black;">No</th>
+                        <th class="bg-info" style="color: black;">Judul</th>
+                        <th class="bg-info" style="color: black;">Kode Buku</th>
+                        <th class="bg-info" style="color: black;">Tanggal Peminjaman</th>
+                        <th class="bg-info" style="color: black;">Tanggal Aktual</th>
+                        <th class="bg-info" style="color: black;">Tanggal Pengembalian</th>
+                        <th class="bg-info" style="color: black;">Denda</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($peminjaman as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->buku['judul']}}</td>
-                            <td>{{ $item->isbn }}</td>
-                            <td>{{ $item->tanggal_peminjaman }}</td>
-                            <td>{{ $item->tanggal_aktual }}</td>
-                            <td>{{ $item->tanggal_pengembalian }}</td>
-                            <td>{{ $item->denda }}</td>
+                            <td class="bg-light">{{ $loop->iteration }}</td>
+                            <td class="bg-light">{{ $item->buku['judul']}}</td>
+                            <td class="bg-light">{{ $item->isbn }}</td>
+                            <td class="bg-light">{{ $item->tanggal_peminjaman }}</td>
+                            <td class="bg-light">{{ $item->tanggal_aktual }}</td>
+                            <td class="bg-light">{{ $item->tanggal_pengembalian }}</td>
+                            <td class="bg-light">{{ $item->denda }}</td>
                         </tr>
                     @endforeach
                 </tbody>

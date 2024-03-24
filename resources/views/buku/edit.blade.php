@@ -22,6 +22,10 @@
     </div>
 
     <div class="form-group">
+    <textarea class="form-control" name="deskripsi" id="deskripsi" rows="4" placeholder="Deskripsi" required></textarea>
+    </div>
+
+    <div class="form-group">
         <label for="stock"><h6>Stock</h6></label>
         <input type="number" class="form-control" id="stock" name="stock" value="{{ old('stock', $buku->stock) }}" required>
     </div>

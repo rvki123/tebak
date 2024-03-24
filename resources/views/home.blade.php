@@ -17,7 +17,7 @@
   <!-- End Google Tag Manager (noscript) -->
   
   <!-- Layout wrapper -->
-<div class="layout-wrapper layout-content-navbar bg-primary">
+<div class="layout-wrapper layout-content-navbar">
   <div class="layout-container">
   <style>
         /* CSS untuk tampilan sidebar */
@@ -42,7 +42,7 @@
             top: 20px;
             left: 50px;
             z-index: 1001; /* Z-index untuk memastikan tombol tampil di atas sidebar */
-            background-color: silver; /* Warna latar belakang tombol */
+            background-color: #00BFFF; /* Warna latar belakang tombol */
             padding: 10px 15px; /* Padding tombol */
             border: none; /* Hilangkan border */
             border-radius: 5px; /* Border radius */
@@ -53,12 +53,13 @@
 
         /* Targeting all paragraphs with the class 'custom-font' */
    
-
         html, body {
-    background-image: url('images/perpuss.jpg');  
-    background-size: contain; 
-    background-repeat: no-repeat;
-    background-position: center center;
+    height: 100pvh;
+    margin: 0;
+    background-image: url('images/perpus.jpg');
+    background-repeat: no-repeat; /* Menghentikan pengulangan gambar latar belakang */
+    background-size: cover; /* Memastikan gambar latar belakang mencakup seluruh area */
+    background-position: center; /* Pusatkan gambar latar belakang */
 }
 
 
@@ -77,7 +78,7 @@
 
 
 
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-gray">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-white">
 
   
   <div class="app-brand demo ">
@@ -207,7 +208,6 @@
                     </div>
                     <div class="flex-grow-1">
                       <span class="fw-medium d-block">{{ Auth::user()->nama_siswa }}</span>
-
                       <small class="text-muted">Siswa</small>
                     </div>
                   </div>
@@ -221,7 +221,13 @@
           {{ csrf_field() }}
           </form>
                   <i class="bx bx-power-off me-2"></i>
+           
                   <span class="align-middle">Log Out</span>
+
+{{-- 
+                  <a class="dropdown-item" href="{{ route('profil') }}">
+                  <span class="align-middle">Profil</span>
+             --}}
                 </a>
               </li>
             </ul>

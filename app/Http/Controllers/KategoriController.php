@@ -12,7 +12,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori_buku::paginate(5);
+        $kategori = Kategori_buku::orderBy('created_at', 'desc')->paginate(5);
         return view('kategori.index', compact('kategori')) ;
 
 

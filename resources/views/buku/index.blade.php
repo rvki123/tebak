@@ -11,27 +11,28 @@
 @if(session('success'))
 <div class="alert alert-success" >{{session('success')}}</div>
 @endif
-<center><h1>Daftar Buku</h1></center>
-<div class="container mt-6">
-<form action="{{ route('buku.index')}}" method="GET" class="mt-5">
-    <div class="input-group mb-5">
-        <input type="text" name="search" class="form-control" placeholder="search-buku" value="{{request('search')}}">
+<h1 class="text-center mt-3">Daftar Buku</h1>
+<div class="container mt-4">
+    <div class="container mt-5">
+        <form action="{{ route('buku.index') }}" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" name="search" class="form-control search-input" placeholder="Search for books"
+                    value="{{ request('search') }}">
+                <button class="form-group-input  btn btn-primary ms-2" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
 
-        <div class="input-group-append  ">
-            <button class="btn btn-primary" type="submit">Search</button>
-        </div>
-    </div> 
-</form>
-
-    <table class="table text-center table-bordered" >
+    <table class="table text-center table-bordered p-6" >
     <thead>
         <tr>
             <th>NO</th>
             <th>judul</th>
+            <th>deskripsi</th>
+            <th>stock</th>
             <th>penulis</th>
-            <th>penerbit</th>
             <th>kategori</th>
-            <th>stok</th>
+            <th>penerbit</th>
             <th>photo</th>
             <th>Actions</th>
         </tr>
@@ -42,10 +43,12 @@
         <tr>
             <td>{{$p+1}}</td>
             <td>{{$u->judul}}</td>
-            <td>{{$u->penulis}}</td>
-            <td>{{$u->penerbit['nama_penerbit']}}</td>
-            <td>{{$u->kategori_buku->kategori}}</td>
+            <td>{{ strlen($u->deskripsi) > 30 ? substr($u->deskripsi, 0, 30) . '...' : $u->deskripsi }}</td>
             <td>{{$u->stock}}</td>
+            <td>{{$u->penulis}}</td>
+            <td>{{$u->kategori_buku->kategori}}</td>
+            <td>{{$u->penerbit['nama_penerbit']}}</td>
+
             <td><img src="{{asset('image/'.$u->photo)}}" alt="" width="50" height="50"></td>
             <td>
 

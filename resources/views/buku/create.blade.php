@@ -19,6 +19,11 @@
     </div>
 
     <div class="form-group">
+    <textarea class="form-control" name="deskripsi" id="deskripsi" rows="4" placeholder="Deskripsi"></textarea>
+    </div>
+
+
+    <div class="form-group">
         <input type="number" class="form-control" id="stock" name="stock" placeholder="Stok" value="{{ old('stock') }}" required>
     </div>
     
