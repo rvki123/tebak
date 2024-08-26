@@ -20,6 +20,8 @@ class BukuController extends Controller
 
     if ($search) {
         $buku->where('judul', 'LIKE', '%' . $search . '%');
+    }else{
+
     }
 
     $buku = $buku->orderBy('created_at', 'desc')->paginate(5);
